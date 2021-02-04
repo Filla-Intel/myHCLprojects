@@ -3,6 +3,8 @@ package emailValidation;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.FileSystems;
+import java.nio.file.Path;
 import java.util.Scanner;
 
 
@@ -10,7 +12,8 @@ public class ValidEmail {
 	
 	public static void main(String[] args) {
 		final int arraySize = 10;
-		String fileName = "G:\\myEclipseProjects\\emailValidation\\bin\\emailList.txt";
+		Path path = FileSystems.getDefault().getPath("src/emailValidation/emailList.txt").toAbsolutePath();
+		//String fileName = "G:\\myEclipseProjects\\emailValidation\\bin\\emailList.txt";
 		String[] emails = new String[arraySize];
 		int i,j = 0;
 		
@@ -23,7 +26,7 @@ public class ValidEmail {
 		String userInput = scnr.nextLine();
 		
 		try {
-            FileReader reader = new FileReader(fileName);
+            FileReader reader = new FileReader(path.toFile());
             BufferedReader bufferedReader = new BufferedReader(reader);
  
             String line;
@@ -31,6 +34,8 @@ public class ValidEmail {
             while ((line = bufferedReader.readLine()) != null) {
             	emails[j] = line;
                 j++;
+                if(j==arraySize)
+                	break;
             }
             reader.close();
             
@@ -42,6 +47,13 @@ public class ValidEmail {
 			if(emails[i].compareTo(userInput)==0)
 			{
 				System.out.print("Email Found: " + emails[i]);
+				break;
+				
+			}
+			else
+			{
+				if(i==arraySize-1)
+					System.out.print("Email " + userInput + " NOT Found!");
 				
 			}
 		}
