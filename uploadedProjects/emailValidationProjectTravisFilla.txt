@@ -1,3 +1,5 @@
+https://github.com/Filla-Intel/myHCLprojects/tree/main/emailValidation
+
 package emailValidation;
 
 import java.io.BufferedReader;
@@ -7,24 +9,6 @@ import java.nio.file.FileSystems;
 import java.nio.file.Path;
 import java.util.Scanner;
 
-
-
-/*This program can only read in 10 emails change arraySize for more
- * The following emails are the defaults in the emailList.txt folder 
- * The program will check and see if the user input matches a valid email listed below
-travisfilla@yahoo.com
-tfilla@gmail.com
-tfilla@yahoo.com
-travisfilla@hcl.com
-abc123@gmail.com
-simplilearn.help@gmail.com
-simplilearn.account@gmail.com
-hcl.support@hcl.com
-hcl.account@hcl.com
-hcl.manage@hcl.com
- *
- * 
- */
 
 public class ValidEmail {
 	
@@ -70,7 +54,7 @@ public class ValidEmail {
 			else
 			{
 				if(i==arraySize-1)
-					System.out.print("Email " + userInput + " was NOT Found!");
+					System.out.print("Email " + userInput + " NOT Found!");
 				
 			}
 		}
