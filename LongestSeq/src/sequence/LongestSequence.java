@@ -16,7 +16,7 @@ public class LongestSequence {
 		//		25, 40, 36, 43, 33, 27, 36, 39, 37, 21, 37, 24, 4, 4, 6, 47, 39, 2, 6, 37, 39, 47, 48, 49, 40, 17, 27, 24};
 		
 		for (int i = 0; i < array.length; i++) {
-	         array[i] = rd.nextInt(50); //fills the array with random numbers 0-49
+	         array[i] = rd.nextInt(101); //fills the array with random numbers 0-100
 	        				
 		}
 		
