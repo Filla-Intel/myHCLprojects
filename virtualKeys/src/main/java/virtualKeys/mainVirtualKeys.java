@@ -1,37 +1,29 @@
 package virtualKeys;
 
-import java.nio.file.FileSystems;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
 import java.util.Scanner;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-import java.net.URI;
 import java.io.*;
 
 public class mainVirtualKeys {
 
 	public static void main(String[] args) {
-		//FileHandler fileHandler = new FileHandler();
+		
 		welcomeScreen();
 		mainMenu();
 		
 		
 	}
-	//private static final Path path = FileSystems.getDefault().getPath("src/main/resources").toAbsolutePath();
+	
+		//This method will loop until the user enter 0 which will break and close the program
 	public static void mainMenu() {
 		
 		Scanner scnr = new Scanner(System.in);
 		int menuOption;
 		String path = "src/main/resources/";
-		String fileHandle;
-		int userInput;
+		String fileHandle;	//name of file user enters
+		int userInput;		//operation the user chooses (add/delete)
 		
 		do {
 		System.out.println("\t\t   Main Menu\n");
@@ -60,10 +52,6 @@ public class mainVirtualKeys {
 	        }
 	        else
 	        	System.out.println("The directory does not exist!");
-	        
-	        //break;
-			
-		
 			
 		}
 		else if(menuOption == 2) {
@@ -71,28 +59,31 @@ public class mainVirtualKeys {
 			System.out.println("Input File Name: ");
 			scnr.nextLine();
 			fileHandle = scnr.nextLine();
-			System.out.println(fileHandle);
 			File file = new File(path,fileHandle);
 			
 			if(file.exists()) {
-				System.out.println("File Name Found \n Would you like to delete " + fileHandle + "?");
-				System.out.println("Press 000 to delete the following file: ");
+				try {
+					System.out.println("\n\nFile Found \n" + file.getCanonicalPath() +"\n\nWould you like to delete " + fileHandle + "?");
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				System.out.println("Enter 000 to delete the following file or Enter any other key to continue: ");
 				userInput = scnr.nextInt();
 				if(userInput == 000) {
 					file.delete();
-					System.out.println("File Deleted!");
+					System.out.println("\nFile Deleted!");
 				}
 				else
 					System.out.println("The file was not deleted");
 			
 			}
 			else if (file.exists() == false) {
-				System.out.println(fileHandle + "does not exist. Would you like to add this file? \n Press 1 to add this file to the directory, or Enter any key to cancel: ");
+				System.out.print(fileHandle + " does not exist. Would you like to add this file? \nEnter 1 to add this file to the directory, or Enter any key to cancel: ");
 				userInput = scnr.nextInt();
 				if(userInput == 1) {
 					try {
 						file.createNewFile();
-						System.out.println("File Created!");
+						System.out.println("\n\nFile Created!");
 					} catch (IOException e) {
 						e.printStackTrace();
 					}
@@ -115,6 +106,7 @@ public class mainVirtualKeys {
 		
 		}while((menuOption == 1) || (menuOption == 2));
 		
+		scnr.close();
 	}
 	
 	
@@ -129,5 +121,4 @@ public class mainVirtualKeys {
 	}
 	
 	
-
 }
